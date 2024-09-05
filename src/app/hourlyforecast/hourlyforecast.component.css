@@ -1,0 +1,114 @@
+.hourly-forecast {
+    width: 800px;
+    height: 360px;
+    background-color: #BAE9FB;
+    padding: 20px;
+    border-radius: 30px;
+    overflow-x: auto;
+    box-sizing: border-box;
+    overflow: hidden; /* Скрывает все переполнения, как вертикальное, так и горизонтальное */
+    box-shadow: 10px 10px 4px #969696;
+  }
+  
+  .hourly-forecast h3 {
+    text-align: center;
+    margin: 10px 0 20px 0;
+    font-size: 32px;
+    font-weight: 600;
+  }
+  
+  .hourly {
+    display: flex;
+    justify-content: space-between;
+    gap: 25px; /* Add spacing between hour blocks */
+  }
+  
+  .hour {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 120px; /* Fixed width for each card */
+    text-align: center;
+    flex: none; /* Prevent flex-grow */
+    background-color: #f0f0f0; /* Background color for each card */
+    padding: 15px; /* Add padding inside each card */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add subtle shadow for depth */
+    box-sizing: border-box;
+    font-size: 20px;
+    font-weight: 600;
+    gap: 7px;
+  }
+  
+  
+  .hour img {
+    width: 40px; /* Adjust icon size as needed */
+    height: 40px;
+    margin: 5px 0; /* Add vertical spacing around icons */
+  }
+  
+  .hour span {
+    margin: 5px 0; /* Add spacing between text lines */
+  }
+  
+
+
+  .hourly-scroll-container {
+
+    overflow-x: auto; /* Добавляет горизонтальную прокрутку */
+    white-space: nowrap; /* Запрещает перенос строк */
+    -webkit-overflow-scrolling: touch; /* Добавляет плавный скролл на мобильных устройствах */
+  }
+  
+  .hourly {
+    display: flex; /* Делает контейнер гибким */
+    flex-wrap: nowrap; /* Запрещает перенос элементов на новую строку */
+  }
+  
+  .hour {
+    width: 120px; /* Ширина каждого блока с данными */
+    padding: 10px;
+    margin-right: 15px; /* Отступ между карточками */
+    border-radius: 20px;
+    text-align: center;
+    border-radius: 40px;
+  }
+  
+  .light-background {
+    background: linear-gradient(
+      to bottom,
+      rgba(248, 133, 8, 1) 0%,
+      rgba(246, 250, 217, 1) 90%
+    );
+    color: #000; /* Цвет текста для дневного времени */
+    font-weight: bold; 
+  }
+  
+  .dark-background {
+    background: linear-gradient(
+      to bottom,
+      rgba(68, 61, 100, 1) 0%,
+      rgba(34, 50, 85, 0) 90%
+    );
+    color: #000; /* Цвет текста для ночного времени */
+    font-weight: bold;
+  }
+  
+  /* Скроллбар для Webkit браузеров (Chrome, Safari) */
+  .hourly-scroll-container::-webkit-scrollbar {
+    
+    height: 8px; /* Высота скроллбара */
+  }
+  
+  .hourly-scroll-container::-webkit-scrollbar-thumb {
+    background: #888; /* Цвет ползунка */
+    border-radius: 4px; /* Скругление ползунка */
+  }
+  
+  .hourly-scroll-container::-webkit-scrollbar-thumb:hover {
+    background: #b6b1b1; /* Цвет ползунка при наведении */
+  }
+  
+  
+  
+  

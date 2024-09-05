@@ -1,0 +1,12 @@
+<app-searchline 
+    (citySearched)="onCitySearch($event)">
+</app-searchline>
+  
+<div class="main-content" tabindex="0">
+    <app-favouritecard></app-favouritecard>
+    <app-favouritecard></app-favouritecard>
+    <app-favouritecard></app-favouritecard>
+    <app-favouritecard></app-favouritecard>
+</div>
+<button *ngIf="showScrollButtons" (click)="scrollUp()" class="scroll-button up">↑</button>
+<button *ngIf="showScrollButtons" (click)="scrollDown()" class="scroll-button down">↓</button>

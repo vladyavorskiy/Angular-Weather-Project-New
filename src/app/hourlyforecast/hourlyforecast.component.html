@@ -1,0 +1,14 @@
+<section class="hourly-forecast">
+    <h3>Hourly Forecast:</h3>
+    <div class="hourly-scroll-container">
+      <div class="hourly">
+        <div *ngFor="let hour of hourlyForecast" class="hour" [ngClass]="hour.backgroundColor">
+          <span>{{ hour.time }}</span>
+          <img [src]="hour.weatherIcon" alt="Weather Icon">
+          <span>{{ hour.temperature }}</span>
+          <img [src]="hour.windIcon" alt="Wind Direction Icon">
+          <span>{{ hour.windSpeed }}</span>
+        </div>
+      </div>
+    </div>
+  </section>

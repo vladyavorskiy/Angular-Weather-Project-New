@@ -1,0 +1,25 @@
+<!-- Main content area -->
+<app-searchline 
+    (citySearched)="onCitySearch($event)">
+  </app-searchline>
+  
+    <div class="main-content">
+      <!-- Information row containing Additional and CurrentWeather components -->
+      <div class="info-row">
+        <app-additional 
+          [timezone]="timezone"
+          [cityName]="cityName">
+        </app-additional>
+        <app-currentweather 
+        [lat]="lat" [lon]="lon" [timezone]="timezone">
+        </app-currentweather>
+        <!-- <app-currentweather [weatherData]="weatherData"></app-currentweather> -->
+      </div>
+  
+      <!-- Forecast row containing HourlyForecast and DailyForecast components -->
+      <div class="forecast-row">
+        <app-hourlyforecast [lat]="lat" [lon]="lon" [timezone]="timezone"></app-hourlyforecast>
+        <app-dailyforecast [lat]="lat" [lon]="lon" [timezone]="timezone"></app-dailyforecast>
+      </div>
+    </div>
+  

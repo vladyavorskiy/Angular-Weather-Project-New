@@ -1,0 +1,55 @@
+
+<section class="current-weather">
+    <div class="temperature-column">
+      <div class="temperature-info">
+        <span class="temperature">{{ weatherData.temperature }}°C</span><br>
+        <div class="feel-temperature"> 
+          <span class="feel-temperature-text">Feels like:</span>
+          <span class="feel-temperature-number"> {{ weatherData.feel_temperature }}°C</span>
+        </div>
+        
+      </div>
+      <div class="sun-times">
+        <div class="sun-time">
+          <img src="/assets/sunrise-icon.svg" alt="Sunrise Icon" class="sun-icon">
+          <div>
+            <p class="sun-text">Sunrise</p>
+            <p class="sun-data">{{ weatherData.sunrise }}</p>
+          </div>
+        </div>
+        <div class="sun-time">
+          <img src="/assets/sunset-icon.svg" alt="Sunset Icon" class="sun-icon">
+          <div>
+            <p class="sun-text">Sunset</p>
+            <p class="sun-data">{{ weatherData.sunset }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="weather-icon-column">
+      <img [src]=weatherData.icon alt="Weather Icon">
+      <p class="weather-description">{{weatherData.description}}</p>
+    </div>
+    <div class="weather-details-column">
+      <div class="detail-item">
+        <img src="/assets/uv-icon.svg" alt="UV Icon">
+        <span class="detail-data">{{ weatherData.uvIndex }}</span>
+        <span class="detail-text">UV Index</span>
+      </div>
+      <div class="detail-item">
+        <img src="/assets/pressure-icon.svg" alt="Pressure Icon">
+        <span class="detail-data">{{ weatherData.pressure }} mmHg</span>
+        <span class="detail-text">Pressure</span>
+      </div>
+      <div class="detail-item">
+        <img src="/assets/wind-icon.svg" alt="Wind Icon">
+        <span class="detail-data">{{ weatherData.windSpeed }} km/h</span>
+        <span class="detail-text">Wind Speed</span>
+      </div>
+      <div class="detail-item">
+        <img src="/assets/humidity-icon.svg" alt="Humidity Icon">
+        <span class="detail-data">{{ weatherData.humidity }}%</span>
+        <span class="detail-text">Humidity</span>
+      </div>
+    </div>
+  </section>

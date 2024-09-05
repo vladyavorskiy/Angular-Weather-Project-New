@@ -1,0 +1,10 @@
+<section class="five-day-forecast">
+    <h3>5 Days Forecast:</h3>
+    <div class="daily">
+      <div *ngFor="let day of dayForecast" class="day">
+        <img [src]="day.icon" alt="Weather Icon">
+        <span>{{ day.temperature }}°C</span>
+        <span>{{ day.date }}</span>
+      </div>
+    </div>
+  </section>

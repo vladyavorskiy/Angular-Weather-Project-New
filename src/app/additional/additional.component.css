@@ -1,0 +1,61 @@
+.additional-info {
+    width: 450px;
+    height: 330px;
+    background-color: #BAE9FB;
+    border-radius: 30px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    box-shadow: 10px 10px 4px #969696;
+  }
+  
+  
+  
+  .city-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .city-header h2 {
+    margin-right: 10px; /* Space between the city name and the button */
+    font-size: 36px; /* Adjust font size as needed */
+    font-weight: 600;
+  }
+  
+  .city-header button {
+    background-color: transparent;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .city-header button:hover {
+    transform: scale(0.90);
+  }
+  
+  
+  .time-info {
+    font-size: 96px; /* Larger font size for the time */
+    margin-bottom: 15px; /* Space below the time */
+    text-align: center;
+    font-weight: 700;
+    text-shadow: 10px 10px 10px #969696;
+  
+  }
+  
+  .date-info {
+    text-align: center;
+    display: flex;
+    justify-content: center; /* Center the content horizontally */
+    gap: 7px; /* Space between day and date, adjust as needed */
+    margin-bottom: 20px;
+  }
+  
+  .date-info span {
+    font-size: 20px; /* Adjust font size as needed */
+    margin: 0; /* Remove default margin */
+  }

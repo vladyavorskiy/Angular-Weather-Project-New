@@ -1,0 +1,128 @@
+<!-- 
+  <div class="favouritecard">
+    <div class="left-section">
+      <div class="city-date">
+        <span class="city">City Name</span>
+        <span class="date">Date</span>
+      </div>
+      
+      <div class="scroll-cards">
+        <div
+          class="card"
+          *ngFor="let temp of temperatures"
+          [style.height.px]="getDynamicHeight(temp)"
+          [style.backgroundColor]="getTemperatureColor(temp)"
+        >
+          <div class="temperature">{{ temp }}°C</div>
+          <div class="bottom-content">
+            <div class="weather-icon">☀️</div>
+            <div class="time">12:00</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="right-section">
+    <div class="wind-section">
+      <div class="title">Wind (m/s)</div>
+      <div class="scroll-cards">
+        <div class="card" *ngFor="let wind of windSpeeds">
+          <div class="wind-info">
+            <span class="wind-speed">{{ wind }}</span>
+            <span class="wind-icon">🡳</span> 
+          </div>
+          <div
+            class="wind-rectangle"
+            [ngStyle]="{'height.px': getWindHeight(wind), 'background-color': 'red'}"
+          ></div>
+          <div class="time">12:00</div>
+        </div>
+      </div>
+    </div>
+
+  
+      <div class="water-section">
+        <div class="title">Water</div>
+        <div class="scroll-cards">
+          <div class="card" *ngFor="let humidity of humidities">
+            <div class="humidity">{{ humidity }}%</div>
+            <div class="humidity-icon">
+              <img class="filled-icon" src="/assets/png/full.png" alt="Filled Icon">
+              <div class="cover-layer" [ngStyle]="{'clip-path': 'inset(0 0 ' + getCoverHeight(humidity) + ' 0)'}"></div>
+              <img class="empty-icon" src="/assets/png/water.png" alt="Empty Icon">
+            </div>
+            <div class="time">12:00</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  -->
+
+
+
+
+
+
+
+
+
+  <div class="favourite-card">
+    <div class="left-panel">
+      <div class="left-panel__city-date">
+        <span class="city-date__city">City Name</span>
+        <span class="city-date__date">Date</span>
+      </div>
+  
+      <div class="left-panel__scroll-cards">
+        <div
+          class="temperature-card"
+          *ngFor="let temp of temperatures"
+          [style.height.px]="getDynamicHeight(temp)"
+          [style.background]="getTemperatureColor(temp)"
+        >
+          <div class="temperature-card__value">{{ temp }}°C</div>
+          <div class="temperature-card__content">
+            <div class="temperature-card__icon">☀️</div>
+            <div class="temperature-card__time">12:00</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="right-panel">
+      <div class="wind-section">
+        <div class="wind-section__title">Wind (m/s)</div>
+        <div class="wind-section__scroll-cards">
+          <div class="wind-card" *ngFor="let wind of windSpeeds">
+            <div class="wind-card__info">
+              <span class="wind-card__speed">{{ wind }}</span>
+              <span class="wind-card__icon">🡳</span>
+            </div>
+            <div
+              class="wind-card__rectangle"
+              [ngStyle]="{'height.px': getWindHeight(wind), 'background-color': 'red'}"
+            ></div>
+            <div class="wind-card__time">12:00</div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="water-section">
+        <div class="water-section__title">Water</div>
+        <div class="water-section__scroll-cards">
+          <div class="humidity-card" *ngFor="let humidity of humidities">
+            <div class="humidity-card__value">{{ humidity }}%</div>
+            <div class="humidity-card__icon-container">
+              <img class="humidity-card__filled-icon" src="/assets/png/full.png" alt="Filled Icon">
+              <div class="humidity-card__cover-layer" [ngStyle]="{'clip-path': 'inset(0 0 ' + getCoverHeight(humidity) + ' 0)'}"></div>
+              <img class="humidity-card__empty-icon" src="/assets/png/water.png" alt="Empty Icon">
+            </div>
+            <div class="humidity-card__time">12:00</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

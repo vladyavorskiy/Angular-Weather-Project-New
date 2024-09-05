@@ -1,0 +1,40 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  
+  *{
+    font-family: 'Poppins', sans-serif;
+  
+  }
+  
+  
+  .container {
+    display: grid;
+    grid-template-columns: 300px 1fr;  /* Sidebar и Main Content */
+    grid-template-rows: 1fr;          /* Одна строка для основного контента */
+    height: 98vh;                     /* Высота на весь экран */
+    width: 100%;                       /* Ширина на весь экран */
+  }
+  
+
+  /* Основной контент справа от навигации */
+  .main-content {
+    margin-top: 130px;
+    grid-column: 2; /* Вторая колонка */
+    grid-row: 1;    /* Первая строка */
+    background-color: #EAF3FA; /* Цвет фона */
+    color: black;   /* Цвет текста */
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 0px; /* Отступы между элементами */
+  }
+
+  
+  /* router-outlet {
+    flex: 1; 
+    }
+   */
+  

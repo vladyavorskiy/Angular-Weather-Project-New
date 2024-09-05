@@ -1,0 +1,72 @@
+<!-- 
+<div class="sidebar-top-bg"></div>
+
+<div class="sidebar">
+    <ul>
+    <li [ngClass]="{'active': isActive('/home')}">
+        <img [src]="getIcon('/home')" alt="Home Icon">
+        <a routerLink="/home" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+    </li>
+    <li [ngClass]="{'active': isActive('/favorite')}">
+        <img [src]="getIcon('/favorite')" alt="Locations Icon">
+        <a routerLink="/favorite">Locations</a>
+    </li>
+    <li>
+        <img src="/assets/png/map_white.png" alt="Map Icon">
+        <a href="#">Map</a>
+    </li>
+    <li>
+        <img src="/assets/png/weather_white.png" alt="Forecast Icon">
+        <a href="#">Daily Forecast</a>
+    </li>
+</ul>
+</div> -->
+
+<!-- <div class="sidebar-top-bg"></div>
+
+<div class="sidebar">
+    <ul>
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <img [src]="getIcon('/home')" alt="Home Icon">
+        <a routerLink="/home">Home</a>
+      </li>
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <img [src]="getIcon('/favorite')" alt="Locations Icon">
+        <a routerLink="/favorite">Locations</a>
+      </li>
+      <li>
+        <img src="/assets/png/map_white.png" alt="Map Icon">
+        <a href="#">Map</a>
+      </li>
+      <li>
+        <img src="/assets/png/weather_white.png" alt="Forecast Icon">
+        <a href="#">Daily Forecast</a>
+      </li>
+    </ul>
+  </div>
+   -->
+
+
+
+   <div class="sidebar-top-bg"></div>
+
+<div class="sidebar">
+  <ul>
+    <li routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <img [src]="getIcon('/home')" alt="Home Icon">
+        <a routerLink="/home">Home</a>
+      </li>
+      <li routerLink="/favorite" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <img [src]="getIcon('/favorite')" alt="Locations Icon">
+        <a routerLink="/favorite">Locations</a>
+      </li>
+    <li>
+      <img src="/assets/png/map_white.png" alt="Map Icon">
+      <a href="#">Map</a>
+    </li>
+    <li>
+      <img src="/assets/png/weather_white.png" alt="Forecast Icon">
+      <a href="#">Daily Forecast</a>
+    </li>
+  </ul>
+</div>

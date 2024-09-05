@@ -1,0 +1,141 @@
+.current-weather {
+    width: 800px;
+    height: 330px;
+    background-color: #BAE9FB;
+    border-radius: 30px;
+    margin-left: 49px;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 10px 10px 4px #969696;
+  
+  }
+  
+  .temperature-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; /* Make it stretch to fill its container */
+    padding: 10px; /* Optional: add some padding */
+    box-sizing: border-box;
+  }
+  
+  .temperature-info {
+    margin-top: 20px;
+    text-align: center; /* Center-align the temperature text */
+  }
+  
+  .temperature {
+    font-size: 80px; /* Larger font size for the main temperature */
+    font-weight: bold; /* Make it bold for emphasis */
+    text-shadow: 10px 10px 10px #969696;
+  }
+  
+  
+  
+  
+  .feel-temperature-text {
+    font-size: 20px; /* Smaller font size for the 'feels like' text */
+    color: #292929; /* Optional: a different color for contrast */
+    font-weight: 600;
+  }
+  .feel-temperature-number {
+    font-size: 32px; /* Smaller font size for the 'feels like' text */
+    color: #292929; /* Optional: a different color for contrast */
+    font-weight: 600;
+  
+  }
+  
+  .sun-times {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Space between sunrise and sunset blocks */
+  }
+  
+  .sun-text{
+    font-size: 20px; /* Larger font size for the main temperature */
+    font-weight: 700;
+    text-shadow: 10px 10px 10px #969696;
+  
+  }
+  
+  .sun-data{
+    font-size: 16px; /* Larger font size for the main temperature */
+    font-weight: 600;
+  
+    text-shadow: 10px 10px 10px #969696;
+  
+  }
+  
+  .sun-time {
+    display: flex;
+    align-items: center;
+  }
+  
+  .sun-icon {
+    width: 40px; /* Adjust icon size as needed */
+    height: 40px;
+    margin-right: 10px; /* Space between icon and text */
+  }
+  
+  .sun-time p {
+    margin: 0; /* Remove default margin */
+  }
+  
+  .sun-time div {
+    display: flex;
+    flex-direction: column;
+  }
+  .weather-icon-column {
+    width: 150px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .weather-description{
+    font-size: 32px;
+    font-weight: bold;
+    text-shadow: 10px 10px 10px #969696;
+  
+  }
+  
+  .weather-icon-column img {
+    width: 100px; /* Adjust icon size as needed */
+    height: 100px;
+    margin: 0 auto;
+  }
+  
+  .weather-details-column {
+    width: 300px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+  }
+  
+  .detail-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 15px;
+  }
+  
+  .detail-data{
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  }
+  
+  .detail-text{
+  font-size: 16px;
+  }
+  
+  .detail-item img {
+    width: 50px; /* Adjust icon size as needed */
+    height: 50px;
+  }
+  
