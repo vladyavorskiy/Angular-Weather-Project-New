@@ -1,7 +1,7 @@
 <section class="additional-info">
     <div class="city-header">
-      <button onclick="handleButtonClick()">
-        <img src="/assets/png/favourite_icon.png" alt="Refresh" > 
+      <button (click)="toggleFavourite()">
+        <img [src]="isFavourite ? '/assets/png/remove_icon.png' : '/assets/png/favourite_icon.png'" alt="Toggle Favourite">
       </button>
     <h2>{{ cityName }}</h2>
     </div>

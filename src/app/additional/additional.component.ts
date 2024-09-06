@@ -1,5 +1,6 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 import { format, toZonedTime } from 'date-fns-tz';
+import { FavouriteService } from '../favourite.service';
 
 @Component({
   selector: 'app-additional',
@@ -14,19 +15,69 @@ export class AdditionalComponent implements OnInit, OnDestroy {
     currentTime:  '00:00'
   };
 
-  
+  @Input() lat: number | null  = null ;
+  @Input() lon: number | null  = null ;
   @Input() cityName: string = 'Unknown';  
   @Input() timezone: string = ''; // Add input property for timezone
 
   private intervalId: any;
+  isFavourite: boolean = false; // Flag to check if the city is already a favorite
 
   ngOnInit(): void {
     this.startRealTimeClock(); // Start the real-time clock when the component initializes
+    this.checkIfFavourite(); // Check if the city is already in favorites
   }
 
   ngOnDestroy(): void {
     if (this.intervalId) {
       clearInterval(this.intervalId); // Clear the interval when the component is destroyed
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['cityName'] || changes['lat'] || changes['lon']) {
+      this.checkIfFavourite(); // Проверка избранного при изменении входных данных
+    }
+  }
+
+  constructor(
+    private favouriteService: FavouriteService,
+  ) {}
+
+  checkIfFavourite() {
+    if (this.lat !== null && this.lon !== null) {
+    this.isFavourite = this.favouriteService.isFavourite(this.cityName, this.lat, this.lon);
+    }
+    console.log('isFavourite: ', this.isFavourite);
+  }
+
+  toggleFavourite() {
+    if (this.isFavourite) {
+      this.removeFromFavourites();
+    } else {
+      this.addToFavourites();
+    }
+  }
+
+  removeFromFavourites() {
+    this.favouriteService.removeFavourite(this.cityName);
+    this.isFavourite = false; // Update the flag after removing
+  }
+
+  addToFavourites() {
+    // Проверяем, что lat и lon не равны null
+    if (this.lat !== null && this.lon !== null) {
+      const city = {
+        cityName: this.cityName,
+        lat: this.lat,
+        lon: this.lon,
+        timezone: this.timezone
+      };
+      this.favouriteService.addFavourite(city);
+      this.isFavourite = true;
+      // Дополнительная логика, например, отображение уведомления
+    } else {
+      console.warn('Coordinates are not available.');
     }
   }
 

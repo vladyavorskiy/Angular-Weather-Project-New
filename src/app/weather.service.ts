@@ -12,6 +12,33 @@ export class WeatherService {
   constructor(private http: HttpClient) {}
 
 
+  getWeatherDataFavourite(lat: number, lon: number, timezone: string): Observable<any> {
+
+    const startTime = moment().tz(timezone).set({ minute: 0, second: 0, millisecond: 0 }).format('YYYY-MM-DDTHH:mm:ssZ');
+    const now = moment().tz(timezone);
+    let endTime: string;
+
+    if (now.hour() >= 0 && now.hour() < 18) {
+      // Текущее время между 00:00 и 20:00
+      endTime = moment().add(1, 'days').tz(timezone).set({ hour: 0, minute: 0, second: 0, millisecond: 0 }).format('YYYY-MM-DDTHH:mm:ssZ');
+    } else {
+      // Текущее время между 20:00 и 00:00
+      endTime = moment().add(1, 'days').tz(timezone).set({ hour: 5, minute: 0, second: 0, millisecond: 0 }).format('YYYY-MM-DDTHH:mm:ssZ');
+    }
+
+    const favouriteUrl = `${this.apiUrl}/${startTime}--${endTime}:PT1H/t_2m:C,wind_speed_FL10:ms,relative_humidity_2m:p,wind_dir_10m:d,weather_symbol_20min:idx/${lat},${lon}/json`;
+
+    console.log('favourite URL:', favouriteUrl); // Выводим сформированный URL
+
+    // Отправляем HTTP GET запрос
+    return this.http.get(favouriteUrl, {
+      headers: {
+        Authorization: 'Basic ' + btoa('-_javorskij_vladisla:41uDR9cOGv') // Replace with your credentials
+      }
+    });
+  }
+
+
   getWeatherData(lat: number, lon: number, timezone: string): Observable<any> {
     //Получаем текущее время в указанном временном поясе
     console.log('TZ name:', timezone); // Выводим текущие дату и время

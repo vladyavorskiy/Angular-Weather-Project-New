@@ -1,91 +1,28 @@
-<!-- 
-  <div class="favouritecard">
-    <div class="left-section">
-      <div class="city-date">
-        <span class="city">City Name</span>
-        <span class="date">Date</span>
-      </div>
-      
-      <div class="scroll-cards">
-        <div
-          class="card"
-          *ngFor="let temp of temperatures"
-          [style.height.px]="getDynamicHeight(temp)"
-          [style.backgroundColor]="getTemperatureColor(temp)"
-        >
-          <div class="temperature">{{ temp }}°C</div>
-          <div class="bottom-content">
-            <div class="weather-icon">☀️</div>
-            <div class="time">12:00</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-
-    <div class="right-section">
-    <div class="wind-section">
-      <div class="title">Wind (m/s)</div>
-      <div class="scroll-cards">
-        <div class="card" *ngFor="let wind of windSpeeds">
-          <div class="wind-info">
-            <span class="wind-speed">{{ wind }}</span>
-            <span class="wind-icon">🡳</span> 
-          </div>
-          <div
-            class="wind-rectangle"
-            [ngStyle]="{'height.px': getWindHeight(wind), 'background-color': 'red'}"
-          ></div>
-          <div class="time">12:00</div>
-        </div>
-      </div>
-    </div>
-
-  
-      <div class="water-section">
-        <div class="title">Water</div>
-        <div class="scroll-cards">
-          <div class="card" *ngFor="let humidity of humidities">
-            <div class="humidity">{{ humidity }}%</div>
-            <div class="humidity-icon">
-              <img class="filled-icon" src="/assets/png/full.png" alt="Filled Icon">
-              <div class="cover-layer" [ngStyle]="{'clip-path': 'inset(0 0 ' + getCoverHeight(humidity) + ' 0)'}"></div>
-              <img class="empty-icon" src="/assets/png/water.png" alt="Empty Icon">
-            </div>
-            <div class="time">12:00</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  -->
-
-
-
-
-
-
-
-
-
-  <div class="favourite-card">
+   <div class="favourite-card" *ngIf="city">
     <div class="left-panel">
       <div class="left-panel__city-date">
-        <span class="city-date__city">City Name</span>
-        <span class="city-date__date">Date</span>
+        <div class="city-info">
+          <span class="city-date__city">{{ city.cityName }},</span>
+          <span class="city-date__date">{{ city.formattedDate }}</span>
+        </div>
+        <button (click)="removeCity(city)" class="remove-button">
+          <img src="/assets/png/remove_icon.png" alt="Remove" class="remove-icon"/>
+        </button>
       </div>
   
       <div class="left-panel__scroll-cards">
         <div
           class="temperature-card"
-          *ngFor="let temp of temperatures"
-          [style.height.px]="getDynamicHeight(temp)"
-          [style.background]="getTemperatureColor(temp)"
+          *ngFor="let weatherData of city.weather"
+          [style.height.px]="getDynamicHeight(weatherData.temperature)"
+          [style.background]="getTemperatureColor(weatherData.temperature)"
         >
-          <div class="temperature-card__value">{{ temp }}°C</div>
+          <div class="temperature-card__value">{{ weatherData.temperature }}°C</div>
           <div class="temperature-card__content">
-            <div class="temperature-card__icon">☀️</div>
-            <div class="temperature-card__time">12:00</div>
+            <!-- <div class="temperature-card__icon">{{ weatherData.weatherIcon }}</div> -->
+            <img class="temperature-card__icon" [src]="weatherData.weatherIcon" alt="Weather Icon">
+
+            <div class="temperature-card__time">{{ weatherData.time }}</div>
           </div>
         </div>
       </div>
@@ -95,16 +32,17 @@
       <div class="wind-section">
         <div class="wind-section__title">Wind (m/s)</div>
         <div class="wind-section__scroll-cards">
-          <div class="wind-card" *ngFor="let wind of windSpeeds">
+          <div class="wind-card" *ngFor="let weatherData of city.weather">
             <div class="wind-card__info">
-              <span class="wind-card__speed">{{ wind }}</span>
-              <span class="wind-card__icon">🡳</span>
+              <span class="wind-card__speed">{{ weatherData.windSpeed }}</span>
+              <!-- <span class="wind-card__icon">{{ weatherData.windIcon }}</span> -->
+              <img class="wind-card__icon" [src]="weatherData.windIcon" alt="Wind Icon">
             </div>
             <div
               class="wind-card__rectangle"
-              [ngStyle]="{'height.px': getWindHeight(wind), 'background-color': 'red'}"
+              [ngStyle]="{'height.px': getWindHeight(weatherData.windSpeed), 'background-color': 'red'}"
             ></div>
-            <div class="wind-card__time">12:00</div>
+            <div class="wind-card__time">{{ weatherData.time }}</div>
           </div>
         </div>
       </div>
@@ -112,17 +50,16 @@
       <div class="water-section">
         <div class="water-section__title">Water</div>
         <div class="water-section__scroll-cards">
-          <div class="humidity-card" *ngFor="let humidity of humidities">
-            <div class="humidity-card__value">{{ humidity }}%</div>
+          <div class="humidity-card" *ngFor="let weatherData of city.weather">
+            <div class="humidity-card__value">{{ weatherData.relativeHumidity }}%</div>
             <div class="humidity-card__icon-container">
               <img class="humidity-card__filled-icon" src="/assets/png/full.png" alt="Filled Icon">
-              <div class="humidity-card__cover-layer" [ngStyle]="{'clip-path': 'inset(0 0 ' + getCoverHeight(humidity) + ' 0)'}"></div>
+              <div class="humidity-card__cover-layer" [ngStyle]="{'clip-path': 'inset(0 0 ' + getCoverHeight(weatherData.relativeHumidity) + ' 0)'}"></div>
               <img class="humidity-card__empty-icon" src="/assets/png/water.png" alt="Empty Icon">
             </div>
-            <div class="humidity-card__time">12:00</div>
+            <div class="humidity-card__time">{{ weatherData.time }}</div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  

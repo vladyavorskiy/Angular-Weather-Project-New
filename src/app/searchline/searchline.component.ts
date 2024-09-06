@@ -21,25 +21,6 @@ export class SearchlineComponent {
 
   constructor(private geocodingService: GeocodingService) {}
 
-  // search() {
-  //   //this.citySearched.emit(this.cityName); // Эмитируем название города
-  //   this.cityNameChoice = this.cityName;
-  //   this.cityName = '';
-  //   // Получаем координаты города
-  //   this.geocodingService.getCoordinates(this.cityNameChoice).subscribe(coords => {
-  //     // Получаем временную зону по координатам
-  //     this.geocodingService.getTimezone(coords.lat, coords.lon).subscribe(timezone => {
-  //       // Эмитируем найденные координаты и временную зону
-  //       this.citySearched.emit({
-  //         lat: coords.lat,
-  //         lon: coords.lon,
-  //         timezone: timezone,
-  //         cityName: cityName
-  //       });
-        
-  //     });
-  //   });
-  // }
 
   search() {
     const cityToSearch = this.cityName;
@@ -56,6 +37,26 @@ export class SearchlineComponent {
           city: cityToSearch,
           lat: coords.lat,
           lon: coords.lon,
+          timezone: timezone
+        });
+      });
+    });
+  }
+
+
+  useCurrentLocation() {
+    this.geocodingService.getCurrentLocation().subscribe(location => {
+      this.geocodingService.getTimezone(location.lat, location.lon).subscribe(timezone => {
+        console.log('Current Location cityName', location.cityName);
+        console.log('Current Location lat', location.lat);
+        console.log('Current Location lon', location.lon);
+        console.log('Current Location timezone', timezone);
+
+        // Эмитируем объект, содержащий город, координаты и временную зону
+        this.citySearched.emit({
+          city: location.cityName,
+          lat: location.lat,
+          lon: location.lon,
           timezone: timezone
         });
       });
