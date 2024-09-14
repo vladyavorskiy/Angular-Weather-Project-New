@@ -44,16 +44,37 @@ export class GeocodingService {
 
 
 
+  // Сохранение в localStorage
+  private cacheData(key: string, data: any): void {
+    localStorage.setItem(key, JSON.stringify(data));
+  }
+
+  // Получение данных из localStorage
+  private getCachedData(key: string): any {
+    const cachedData = localStorage.getItem(key);
+    return cachedData ? JSON.parse(cachedData) : null;
+  }
+
   public getCoordinates(cityName: string): Observable<{ lat: number; lon: number }> {
+    
+    const cacheKey = `coordinates_${cityName.toLowerCase()}`;
+    const cachedData = this.getCachedData(cacheKey);
+
+    if (cachedData) {
+      console.log('Использование кэшированных координат:', cachedData);
+      return of(cachedData);
+    }
+    
     const url = `${this.geocodingApiUrl}?text=${cityName}&apiKey=${this.apiKey}`;
     console.log('URL Geo:', url); 
     return this.http.get<any>(url).pipe(
       map((response) => {
         if (response && response.features && response.features.length > 0) {
           const coordinates = response.features[0].geometry.coordinates;
-          console.log('coordinates:', coordinates); 
-
-          return { lon: coordinates[0], lat: coordinates[1] };
+          const result = { lon: coordinates[0], lat: coordinates[1] };
+          this.cacheData(cacheKey, result); // Сохранение в кэш
+          console.log('coordinates:', result);
+          return result;
         }
         throw new Error('City not found');
       })
@@ -70,12 +91,24 @@ export class GeocodingService {
   }
 
   public getTimezone(lat: number, lon: number): Observable<string> {
+    
+    const cacheKey = `timezone_${lat}_${lon}`;
+    const cachedData = this.getCachedData(cacheKey);
+
+    if (cachedData) {
+      console.log('Использование кэшированной временной зоны:', cachedData);
+      return of(cachedData);
+    }
+    
     const url = `${this.timezoneApiUrl}?lat=${lat}&lon=${lon}&apiKey=${this.apiKey}`;
     console.log('URL TZ:', url); 
     return this.http.get<any>(url).pipe(
       map((response) => {
         if (response && response.features) {
-          return response.features[0].properties.timezone.name; // Возвращаем название часового пояса
+          const timezone = response.features[0].properties.timezone.name;
+          this.cacheData(cacheKey, timezone); // Сохранение в кэш
+          console.log('timezone:', timezone);
+          return timezone;
         }
         throw new Error('Timezone not found');
       })

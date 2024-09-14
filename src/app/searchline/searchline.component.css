@@ -13,7 +13,7 @@ body, html {
   position: fixed;
   top: 0px;
   left: 200px;
-  height: 100px;
+  height: 110px;
   width: 100%;
   z-index: 1000;
   grid-column: 2; /* Second column */
