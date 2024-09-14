@@ -9,35 +9,53 @@ body, html {
 
 }
 
-.main-content {
+/* .main-content {
   margin-top: 20px;
-  background-color: #EAF3FA; /* Светло-серый фон */
-  color: black; /* Черный цвет текста */
+  background-color: #EAF3FA; 
+  color: black; 
   padding: 0 20px 20px 20px;
   display: flex;
-  flex-direction: column; /* Выстраивание элементов по вертикали */
-  gap: 25px; /* Промежуток между карточками */
+  flex-direction: column; 
+  gap: 25px; 
   align-items: center;
-  max-height: 100vh; /* Ограничьте высоту контейнера */
-  min-height: 200px; /* Минимальная высота для предотвращения прокрутки с малым количеством элементов */
-  overflow-y: auto; /* Включите вертикальную прокрутку */
+  max-height: 100vh; 
+  min-height: 200px; 
+  overflow-y: hidden;
   position: relative;
-  outline: none; /* Убирает чёрные полосы при фокусе */
+  outline: none; 
+} */
+
+
+.main-content {
+  margin-top: 10px;
+  background-color: #EAF3FA; 
+  color: black;
+  padding: 20px;
+  display: flex;
+  flex-direction: column; 
+  gap: 30px; 
+  align-items: center;
+  max-height: 78.7vh; 
+  min-height: 200px; 
+  overflow-y:hidden; 
+  position: relative;
+  outline: none; 
 
 }
 
 
 
+
 .scroll-button {
-position: absolute; /* Позиционирует кнопки относительно контейнера */
-right: 20px; /* Расположите кнопки справа от контейнера */
+position: absolute; 
+right: 20px; 
 background-color: #8c96a1;
 color: white;
 border: none;
 padding: 10px 20px;
 font-size: 30px;
 cursor: pointer;
-z-index: 1000; /* Положение кнопок поверх других элементов */
+z-index: 1000; 
 border-radius: 30px;
 height: 60px;
 }
@@ -45,15 +63,15 @@ height: 60px;
 
 
 .scroll-button.up {
-top: 50%; /* Разместите кнопку вверх по центру */
-transform: translateY(-70%); /* Выравнивание кнопки по центру */
+top: 50%; 
+transform: translateY(-70%); 
 }
 
 .scroll-button.down {
-top: 50%; /* Разместите кнопку вниз по центру */
-transform: translateY(70%); /* Выравнивание кнопки по центру */
+top: 50%;
+transform: translateY(70%); 
 }
 
 .scroll-button:hover {
-background-color: #4b5055; /* Изменение цвета при наведении */
+background-color: #4b5055; 
 }

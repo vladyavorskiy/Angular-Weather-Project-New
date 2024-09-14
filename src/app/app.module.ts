@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http'; // Добавить д�
 import { FormsModule } from '@angular/forms'; // Для работы с формами
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GeoapifyGeocoderAutocompleteModule } from '@geoapify/angular-geocoder-autocomplete';
 import { FavouritesComponent } from './favourites/favourites.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { SearchlineComponent } from './searchline/searchline.component';
@@ -15,6 +14,7 @@ import { DailyforecastComponent } from './dailyforecast/dailyforecast.component'
 import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
 import { FavouritecardComponent } from './favouritecard/favouritecard.component'; // Добавьте этот импорт
+import { GeoapifyGeocoderAutocompleteModule } from '@geoapify/angular-geocoder-autocomplete';
 
 @NgModule({
   declarations: [

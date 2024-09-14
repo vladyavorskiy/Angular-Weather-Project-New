@@ -1,4 +1,4 @@
-import { Component, HostListener, ElementRef, AfterViewInit, OnInit, ViewChildren, ViewChild   } from '@angular/core';
+import { Component, HostListener, ElementRef, AfterViewInit, OnInit, ViewChildren, ViewChild, QueryList, ChangeDetectorRef   } from '@angular/core';
 import { Router } from '@angular/router';
 import { WeatherService } from '../weather.service';
 import { Observable, forkJoin } from 'rxjs';
@@ -23,10 +23,10 @@ export class FavouritesComponent implements AfterViewInit, OnInit {
 
   constructor(
     private router: Router, 
-    private elRef: ElementRef, 
+    private elRef: ElementRef,
     private weatherService: WeatherService,
     private favouriteService: FavouriteService,
-    private iconsService: IconsService
+    private iconsService: IconsService,
 
   ) {}
   
@@ -53,6 +53,12 @@ export class FavouritesComponent implements AfterViewInit, OnInit {
   }
 
 
+  updateFavouriteCities(cityName: string): void {
+    // Remove the city from the local array
+    this.favouriteCities = this.favouriteCities.filter(city => city.cityName !== cityName);
+    this.checkScrollButtons(); // Update the scroll buttons after removing a city
+  }
+
   loadFavouriteCities(): void {
     const cities = this.favouriteService.getFavourites();
     const weatherObservables = cities.map(city =>
@@ -78,11 +84,7 @@ export class FavouritesComponent implements AfterViewInit, OnInit {
     });
   }
 
-  updateFavouriteCities(cityName: string): void {
-    // Remove the city from the local array
-    this.favouriteCities = this.favouriteCities.filter(city => city.cityName !== cityName);
-    this.checkScrollButtons(); // Update the scroll buttons after removing a city
-  }
+  
 
   
   processFavouriteData(response: any, timezone: string): any[] {
@@ -153,55 +155,53 @@ export class FavouritesComponent implements AfterViewInit, OnInit {
     }
   }
 
+
+  @ViewChild('mainContent') mainContent!: ElementRef;
+  @ViewChildren('card') cards!: QueryList<ElementRef>;
   
   ngAfterViewInit() {
-    setTimeout(() => {
-      this.checkScrollButtons();
-    });
+    this.checkScrollButtons();
+    this.cards.changes.subscribe(() => this.checkScrollButtons());
   }
 
-  @ViewChildren('Fcard') fcard: ElementRef[] = []
 
-  checkScrollButtons() {
-     if (this.fcard){
-      const cards = this.fcard.length
-      this.showScrollButtons = cards > 2;
-      console.log(cards)
-      console.log(1)
-    }
-  }
+  // ngAfterViewInit() {
+  //   this.cdr.detectChanges();
+  //   this.checkScrollButtons();
+  //   this.cards.changes.subscribe(() => {
+  //     this.cdr.detectChanges();
+  //     this.checkScrollButtons();
+  //   });
+  // }
 
+
+  
   scrollUp() {
     const mainContent = this.elRef.nativeElement.querySelector('.main-content');
     const cardHeight = mainContent.querySelector('app-favouritecard')?.offsetHeight || 0;
-    const scrollDistance = cardHeight + 80; // Смещение на 40 пикселей больше
-    mainContent.scrollBy({ top: -scrollDistance, behavior: 'smooth' }); // Скролл вверх на одну карточку
-    console.log('Card height:', cardHeight);
-    console.log('Scroll distance:', scrollDistance);
-    console.log(mainContent);
+    const scrollDistance = cardHeight + 30; // Смещение на 40 пикселей больше
+    mainContent.scrollBy({ top: -scrollDistance, behavior: 'smooth' });
   }
 
   scrollDown() {
     const mainContent = this.elRef.nativeElement.querySelector('.main-content');
     const cardHeight = mainContent.querySelector('app-favouritecard')?.offsetHeight || 0;
-    const scrollDistance = cardHeight + 80; // Смещение на 40 пикселей больше
-    mainContent.scrollBy({ top: scrollDistance, behavior: 'smooth' }); // Скролл вниз на одну карточку
-    console.log('Card height:', cardHeight);
-    console.log('Scroll distance:', scrollDistance);
-    console.log(mainContent);
+    const scrollDistance = cardHeight + 30; // Смещение на 40 пикселей больше
+    mainContent.scrollBy({ top: scrollDistance, behavior: 'smooth' });
+
   }
 
 
+  checkScrollButtons() {
+    if (this.cards.length > 2) {
+      this.showScrollButtons = true;
+    } else {
+      this.showScrollButtons = false;
+    }
+  }
+
+  
   
 }
-
-
-
-
-
-
-
-
-
 
 

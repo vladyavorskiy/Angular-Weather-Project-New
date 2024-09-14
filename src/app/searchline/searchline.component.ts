@@ -22,6 +22,30 @@ export class SearchlineComponent {
   constructor(private geocodingService: GeocodingService) {}
 
 
+
+  onPlaceSelected(event: any) {
+    const cityToSearch = event.properties.city || event.properties.name;
+    const lat = event.properties.lat;
+    const lon = event.properties.lon;
+
+    this.geocodingService.getTimezone(lat, lon).subscribe(timezone => {
+      console.log('Selected city', cityToSearch);
+      console.log('lat', lat);
+      console.log('lon', lon);
+      console.log('timezone', timezone);
+
+      // Эмитируем объект, содержащий город, координаты и временную зону
+      this.citySearched.emit({
+        city: cityToSearch,
+        lat: lat,
+        lon: lon,
+        timezone: timezone
+      });
+    });
+  }
+
+
+
   search() {
     const cityToSearch = this.cityName;
     this.cityName = ''; // Очистка поля поиска

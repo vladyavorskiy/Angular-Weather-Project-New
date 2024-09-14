@@ -1,5 +1,5 @@
 <div class="top-content">
-    <div class="search-container">
+    <!-- <div class="search-container">
         <img src="/assets/png/search_icon.png" alt="Search" class="search-icon" />
         <input class="search-bar"
         type="text"
@@ -8,6 +8,14 @@
         (keyup.enter)="search()"
 
         />
+    </div> -->
+
+    <div class="search-container">
+      <img src="/assets/png/search_icon.png" alt="Search" class="search-icon" />
+      <geoapify-geocoder-autocomplete
+        [placeholder]="'Enter city name'"
+        (placeSelect)="onPlaceSelected($event)">
+      </geoapify-geocoder-autocomplete>
     </div>
 
     <button class="current-location" (click)="useCurrentLocation()"> 
@@ -15,8 +23,3 @@
       Current Location
     </button>
   </div>
-
-<!-- (keyup.enter)="getWeatherByCity(cityName)" -->
-
-  
-<!-- (click)="getWeatherCurrentLocation()" -->
